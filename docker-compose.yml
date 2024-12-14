@@ -30,7 +30,7 @@ services:
       - "10700:10700"
     command:
       - "--name"
-      - "my satellite"
+      - "Beebo"
       - "--mic-uri"
       - "tcp://microphone:10600"
       - "--snd-uri"
