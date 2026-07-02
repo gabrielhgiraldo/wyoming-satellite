@@ -10,10 +10,14 @@ WORKDIR /app
 
 COPY sounds/ ./sounds/
 COPY script/setup ./script/
-COPY setup.py requirements.txt MANIFEST.in ./
+COPY setup.py requirements.txt requirements_vad.txt MANIFEST.in ./
 COPY wyoming_satellite/ ./wyoming_satellite/
 
 RUN script/setup
+
+# Install VAD support (pysilero-vad) so --vad works for local end-of-speech
+# detection. Uses the venv created by script/setup. 2026-07-02
+RUN .venv/bin/pip install --no-cache-dir -r requirements_vad.txt
 
 COPY script/run ./script/
 COPY docker/run ./
